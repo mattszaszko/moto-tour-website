@@ -38,17 +38,18 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     };
 
-    // Collapse responsive navbar when toggler is visible
+    // Collapse responsive navbar when a nav link or dropdown item is clicked (not when opening the Trips dropdown)
     const navbarToggler = document.body.querySelector('.navbar-toggler');
-    const responsiveNavItems = [].slice.call(
-        document.querySelectorAll('#navbarResponsive .nav-link')
-    );
-    responsiveNavItems.map(function (responsiveNavItem) {
-        responsiveNavItem.addEventListener('click', () => {
-            if (window.getComputedStyle(navbarToggler).display !== 'none') {
-                navbarToggler.click();
-            }
-        });
+    const closeOnClick = (el) => {
+        if (navbarToggler && window.getComputedStyle(navbarToggler).display !== 'none') {
+            navbarToggler.click();
+        }
+    };
+    document.querySelectorAll('#navbarResponsive .dropdown-item').forEach(el => {
+        el.addEventListener('click', closeOnClick);
+    });
+    document.querySelectorAll('#navbarResponsive .nav-link:not(.dropdown-toggle)').forEach(el => {
+        el.addEventListener('click', closeOnClick);
     });
 
 });
