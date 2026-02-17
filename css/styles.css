@@ -11036,13 +11036,18 @@ body {
 }
 #mainNav .navbar-logo {
   height: 2.6rem;
+  max-height: 2.6rem;
   width: auto;
+  max-width: min(100%, 4rem);
   margin-right: 0.5rem;
   flex-shrink: 0;
+  display: block;
+  object-fit: contain;
 }
 @media (min-width: 992px) {
   #mainNav.navbar-shrink .navbar-logo {
     height: 2.28rem;
+    max-height: 2.28rem;
   }
 }
 #mainNav .navbar-nav .nav-item:hover {
@@ -11159,11 +11164,13 @@ body {
 .masthead .masthead-logo {
   max-height: 6rem;
   width: auto;
+  max-width: 100%;
   margin-top: 1rem;
   margin-bottom: 1rem;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  object-fit: contain;
 }
 @media (min-width: 768px) {
   .masthead .masthead-logo {
@@ -11341,12 +11348,15 @@ body {
 }
 .footer-logo {
   height: 3rem;
+  max-height: 3rem;
   width: auto;
+  max-width: 100%;
   margin-bottom: 1rem;
   display: block;
   margin-left: auto;
   margin-right: auto;
   opacity: 0.9;
+  object-fit: contain;
 }
 
 /* ------------------------------------------------------------------
