@@ -10973,6 +10973,7 @@ textarea.form-control-lg {
 }
 html {
   scroll-padding-top: calc(4.5rem - 1px);
+  overflow-x: hidden;
 }
 
 body {
@@ -11154,6 +11155,12 @@ body {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   max-width: 100%;
+  overflow-x: hidden;
+}
+.masthead h1.mx-auto,
+.masthead .h1.mx-auto {
+  max-width: 100%;
+  overflow-wrap: break-word;
 }
 @media (min-width: 576px) {
   .masthead .masthead-content-inner {
@@ -11188,11 +11195,16 @@ body {
   font-family: "Varela Round", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 2rem;
   line-height: 2rem;
-  letter-spacing: 0.8rem;
+  letter-spacing: 0.4rem;
   background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.5));
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
           background-clip: text;
+}
+@media (min-width: 576px) {
+  .masthead h1, .masthead .h1 {
+    letter-spacing: 0.8rem;
+  }
 }
 .masthead h2, .masthead .h2 {
   max-width: 20rem;
@@ -11204,10 +11216,35 @@ body {
     line-height: 4rem;
   }
 }
+@media (min-width: 768px) and (max-width: 991px) {
+  .masthead {
+    min-height: 56rem;
+    padding: 20rem 0 6rem;
+  }
+  .masthead .masthead-content-inner {
+    padding-bottom: 1rem;
+  }
+  .masthead .masthead-logo {
+    max-height: 6rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .masthead h1, .masthead .h1 {
+    font-size: 2.75rem;
+    line-height: 2.75rem;
+    letter-spacing: 0.5rem;
+  }
+  .masthead h2, .masthead .h2 {
+    font-size: 0.95rem;
+    max-width: 22rem;
+  }
+}
 @media (min-width: 992px) {
   .masthead {
+    min-height: 100vh;
     height: 100vh;
-    padding: 0;
+    padding: 0 0 6rem 0;
+    box-sizing: border-box;
   }
   .masthead h1, .masthead .h1 {
     font-size: 6.5rem;
@@ -11217,6 +11254,22 @@ body {
   .masthead h2, .masthead .h2 {
     max-width: 30rem;
     font-size: 1.25rem;
+  }
+}
+@media (min-width: 992px) and (max-width: 1599px) {
+  .masthead .masthead-logo {
+    max-height: 7rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .masthead h1, .masthead .h1 {
+    font-size: 4rem;
+    line-height: 4rem;
+    letter-spacing: 0.6rem;
+  }
+  .masthead h2, .masthead .h2 {
+    font-size: 1rem;
+    max-width: 26rem;
   }
 }
 
