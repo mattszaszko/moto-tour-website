@@ -11396,6 +11396,31 @@ body {
   color: #c4b896;
 }
 
+.newsletter-signup-section .newsletter-form .form-control {
+  min-width: 0;
+  border-color: #495057;
+  background-color: rgba(33, 37, 41, 0.95);
+  color: #fff;
+}
+.newsletter-signup-section .newsletter-form .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+.newsletter-signup-section .newsletter-form .form-control:focus {
+  border-color: #6c757d;
+  background-color: rgba(33, 37, 41, 0.95);
+  color: #fff;
+  box-shadow: 0 0 0 0.2rem rgba(108, 117, 125, 0.35);
+}
+.newsletter-signup-section .newsletter-form-fields {
+  max-width: 100%;
+}
+@media (min-width: 576px) {
+  .newsletter-signup-section .newsletter-form .form-control {
+    flex: 1;
+    min-width: 12rem;
+  }
+}
+
 .footer {
   padding: 5rem 0;
 }
