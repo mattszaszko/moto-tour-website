@@ -11129,7 +11129,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("../assets/img/tiger-2.jpg");
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("../assets/img/tiger-2.webp");
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: scroll;
@@ -11138,14 +11138,14 @@ body {
   z-index: -1;
 }
 .masthead-asia::before {
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("../assets/img/lingayen.jpg");
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("../assets/img/lingayen.webp");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   filter: grayscale(0.55);
 }
 .masthead-week::before {
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("../assets/img/mulberry.jpg");
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("../assets/img/mulberry.webp");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -11305,7 +11305,7 @@ body {
 
 .signup-section {
   padding: 10rem 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 75%, #000 100%), url("../assets/img/day-trips/custom-trip/bg-signup.jpg");
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 75%, #000 100%), url("../assets/img/day-trips/custom-trip/bg-signup.webp");
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
@@ -11473,7 +11473,7 @@ body {
   width: 100%;
   min-height: 16rem;
   padding: 7rem 0 4rem;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.9) 60%, #000 100%), url("../assets/img/day-trips/custom-trip/bg-signup.jpg");
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.9) 60%, #000 100%), url("../assets/img/day-trips/custom-trip/bg-signup.webp");
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
