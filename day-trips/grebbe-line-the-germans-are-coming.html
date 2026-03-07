@@ -54,7 +54,7 @@
                     <div class="text-center">
                         <h1 class="mx-auto my-0 text-uppercase masthead-trip-title">The Grebbe Line: The Germans Are Coming!</h1>
                         <h2 class="text-white-50 mx-auto mt-2 mb-5 masthead-trip-subtitle">Ride to the front lines of the May 1940 invasion where Dutch troops made a desperate 3 day stand against the Blitzkrieg. This route takes you through the preserved trenches of the Grebbeberg and the heavy concrete bunkers of the New Dutch Waterline.</h2>
-                        <a class="btn btn-primary" href="../contact.html">Book now</a>
+                        <a class="btn btn-primary" href="#booking-section">Book now</a>
                     </div>
                 </div>
             </div>
@@ -105,7 +105,7 @@
                     <div class="card-body p-4 p-lg-5">
                         <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4 pb-4 border-bottom border-secondary">
                             <p class="text-white mb-0 fs-4">€55 per rider</p>
-                            <a href="../contact.html" class="btn btn-primary">Book now</a>
+                            <a href="#booking-section" class="btn btn-primary">Book now</a>
                         </div>
                         <div class="row g-4">
                             <div class="col-md-6">
@@ -132,6 +132,28 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <section id="booking-section" class="py-5 bg-black booking-section">
+            <div class="container px-4 px-lg-5">
+                <h2 class="text-white mb-4 text-center">Pick your date and secure your spot</h2>
+                <div class="cal-embed-wrapper">
+                    <!-- Cal inline embed code begins -->
+                    <div class="cal-inline-embed" id="my-cal-inline-grebbe-line"></div>
+                    <script type="text/javascript">
+                      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+                      Cal("init", "grebbe-line", {origin:"https://app.cal.com"});
+                      Cal.ns["grebbe-line"]("inline", {
+                        elementOrSelector:"#my-cal-inline-grebbe-line",
+                        config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true","autoFocus":false},
+                        calLink: "matt-szaszko-k6ggpc/grebbe-line",
+                      });
+                      Cal.ns["grebbe-line"]("ui", {"hideEventTypeDetails":true,"layout":"month_view"});
+                    </script>
+                    <!-- Cal inline embed code ends -->
+                </div>
+                <p class="booking-legal-notice">By booking a trip you agree to the <a href="../legal/terms-and-services.html" target="_blank" rel="noopener">Terms &amp; Services</a> and the <a href="../legal/privacy-statement.html" target="_blank" rel="noopener">Privacy Statement</a>.</p>
             </div>
         </section>
 
@@ -164,7 +186,7 @@
                     <a href="https://medium.com/@MattSzaszko/list/way-witness-9cd9d0fb65ae" target="_blank" rel="noopener" aria-label="Medium"><i class="fab fa-medium"></i></a>
                 </div>
                 <div class="mt-2">
-                    <a href="../legal/terms-and-services.html">Terms and Services</a> &middot; <a href="../legal/privacy-statement.html">Privacy Statement</a>
+                    <a href="../legal/terms-and-services.html" target="_blank" rel="noopener">Terms and Services</a> &middot; <a href="../legal/privacy-statement.html" target="_blank" rel="noopener">Privacy Statement</a>
                 </div>
             </div>
         </footer>

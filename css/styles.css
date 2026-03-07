@@ -10972,6 +10972,7 @@ textarea.form-control-lg {
   }
 }
 html {
+  scroll-behavior: smooth;
   scroll-padding-top: calc(4.5rem - 1px);
   overflow-x: hidden;
 }
@@ -11842,6 +11843,36 @@ body {
   line-height: 1.6;
 }
 
+/* Tighter gap between booking (Cal.com) and "What you'll witness" */
+.booking-section {
+  padding-bottom: 0;
+}
+.booking-section + section {
+  padding-top: 0.25rem;
+}
+
+/* Cal.com embed: full size, scrollbar only when needed, no horizontal scroll on mobile */
+.cal-embed-wrapper {
+  width: 100%;
+  min-height: 480px;
+}
+.cal-embed-wrapper .cal-inline-embed {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+@media (max-width: 767.98px) {
+  .cal-embed-wrapper {
+    min-height: 380px;
+  }
+  .cal-embed-wrapper .cal-inline-embed {
+    min-height: 320px;
+    overflow-x: hidden;
+  }
+}
+
 .trip-gallery {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -11891,8 +11922,34 @@ body {
   font-size: 0.95rem;
   line-height: 1.7;
 }
+.page-legal .legal-body h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+  color: #212529;
+}
+.page-legal .legal-body h2:first-of-type {
+  margin-top: 0;
+}
 .page-legal .legal-body p {
   margin-bottom: 1rem;
+}
+/* Unobtrusive legal notice at bottom of booking section on day trip pages */
+.booking-legal-notice {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.45);
+  text-align: center;
+  margin-top: 1.25rem;
+  margin-bottom: 0;
+}
+.booking-legal-notice a {
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+.booking-legal-notice a:hover {
+  color: rgba(255, 255, 255, 0.75);
 }
 .page-legal .footer {
   border-top: 1px solid #dee2e6;
