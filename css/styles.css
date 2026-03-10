@@ -12039,6 +12039,16 @@ body {
   max-width: 100%;
 }
 
+/* Inline figures: same width as text column, no full-bleed */
+.blog-image-figure-inline {
+  width: 100%;
+  max-width: 100%;
+  margin: 3rem 0;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0;
+}
+
 .blog-placeholder-figure {
   margin: 2rem 0;
 }
