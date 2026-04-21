@@ -20,7 +20,7 @@
         <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png" />
         <link rel="icon" type="image/x-icon" href="../assets/favicon/favicon.ico" />
         <link rel="manifest" href="../site.webmanifest" />
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.3.0/css/all.css" crossorigin="anonymous" />
         <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
         <link href="../css/styles.css" rel="stylesheet" />
@@ -29,7 +29,14 @@
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container px-4 px-lg-5">
                 <a class="navbar-brand" href="../index.html"><img src="../assets/img/way-and-witness-logo.png" alt="" class="navbar-logo me-2">Way & Witness</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
+                                
+<button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
+                <div class="witness-tracks-mobile-cta d-lg-none mt-3">
+                    <a class="btn btn-primary w-100" href="../witness-tracks.html" aria-label="The Witness Tracks (audio)">
+                        <i class="fa-solid fa-headphones me-2"></i>The Witness Tracks
+                    </a>
+                </div>
+
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="../about.html">About</a></li>
@@ -43,12 +50,14 @@
                         </li>
                         <li class="nav-item"><a class="nav-link" href="../stories/stories.html">Stories</a></li>
                         <li class="nav-item"><a class="nav-link" href="../contact.html">Contact</a></li>
-                        <li class="nav-item ms-lg-3 d-flex align-items-center">
-                            <a class="btn btn-primary btn-sm px-3" href="../witness-tracks.html" aria-label="The Witness Tracks (audio)">
+                        <li class="nav-item ms-lg-3 d-none d-lg-flex align-items-center">
+                            <a class="btn btn-primary px-3" href="../witness-tracks.html" aria-label="The Witness Tracks (audio)">
                                 <i class="fa-solid fa-headphones me-2"></i>The Witness Tracks
                             </a>
                         </li>
                     </ul>
+
+                
                 </div>
             </div>
         </nav>

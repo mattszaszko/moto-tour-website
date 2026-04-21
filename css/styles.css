@@ -108,6 +108,28 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+/* Mobile Witness Tracks CTA under navbar row */
+.witness-tracks-mobile-cta {
+  flex-basis: 100%;
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: flex;
+  justify-content: center;
+}
+.witness-tracks-mobile-cta .btn {
+  width: 100%;
+  max-width: 520px;
+}
+
+/* Mobile: use sticky nav so content doesn't sit underneath */
+@media (max-width: 991.98px) {
+  #mainNav.fixed-top {
+    position: sticky;
+  }
+}
+
+
 hr {
   margin: 1rem 0;
   color: inherit;
@@ -11180,6 +11202,19 @@ body {
   margin-right: auto;
   object-fit: contain;
 }
+@media (max-width: 575.98px) {
+  .masthead .masthead-logo {
+    margin-top: 0.25rem;
+    margin-bottom: 0.75rem;
+    max-height: 7rem;
+  }
+  .masthead h2, .masthead .h2 {
+    margin-bottom: 1.75rem !important;
+  }
+  .masthead {
+    padding: 14rem 0 10rem;
+  }
+}
 @media (min-width: 768px) {
   .masthead .masthead-logo {
     max-height: 11.25rem;
@@ -11525,13 +11560,6 @@ body {
   box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.35);
 }
 
-/* Nav: keep "The Witness Tracks" button proportional */
-#mainNav a[aria-label="The Witness Tracks (audio)"] {
-  padding: 0.45rem 0.8rem;
-  font-size: 0.95rem;
-  line-height: 1.1;
-}
-
 /* About page profile */
 .about-profile-wrapper {
   max-width: none;
@@ -11707,11 +11735,13 @@ body {
 }
 
 .track-main {
-  height: calc(100vh - 56px);
+  /* Use dynamic viewport height on mobile so bottom CTAs stay visible above browser UI */
+  height: calc(100dvh - 56px);
+  min-height: calc(100vh - 56px);
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  padding: 0.75rem 0.75rem 0.9rem;
+  padding: 0.75rem 0.75rem calc(0.9rem + env(safe-area-inset-bottom));
 }
 
 .track-gpx .btn {
@@ -11935,6 +11965,7 @@ body {
   grid-template-columns: auto 1fr;
   gap: 0.75rem;
   align-items: center;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 .track-nav-btn {
   border-radius: 0;
