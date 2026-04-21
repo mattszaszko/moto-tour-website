@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6PTXWCWZYQ"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-6PTXWCWZYQ');
+        </script>
+        <meta name="description" content="Grebbelinie: Water &amp; Fire — Witness Track" />
+        <meta name="theme-color" content="#000000" />
+        <title>Grebbelinie: Water &amp; Fire - The Witness Tracks</title>
+        <!-- Favicons -->
+        <link rel="icon" type="image/svg+xml" href="../assets/favicon/favicon.svg" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png" />
+        <link rel="icon" type="image/x-icon" href="../assets/favicon/favicon.ico" />
+        <link rel="manifest" href="../site.webmanifest" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="../css/styles.css" rel="stylesheet" />
+    </head>
+    <body class="track-app">
+        <header class="track-topbar">
+            <a class="track-topbar-back" href="../witness-tracks.html" aria-label="Back to Witness Tracks">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+            <div class="track-topbar-title">Grebbelinie: Water &amp; Fire</div>
+        </header>
+
+        <main class="track-main" id="app">
+            <div class="track-gpx">
+                <a class="btn btn-primary w-100" href="../assets/gpx/grebbe-line-witness-track.gpx" download>
+                    <i class="fa-solid fa-download me-2"></i>Download GPX
+                </a>
+            </div>
+
+            <section class="track-carousel-wrap" aria-label="Stops carousel">
+                <div class="track-carousel" id="trackCarousel"></div>
+            </section>
+
+            <section class="track-player" id="trackPlayer" aria-label="Audio player" hidden>
+                <div class="track-player-top">
+                    <div class="track-toggle" role="tablist" aria-label="Audio length">
+                        <button class="track-toggle-btn active" id="toggleShort" type="button" aria-selected="true">Short</button>
+                        <button class="track-toggle-btn" id="toggleLong" type="button" aria-selected="false">Long</button>
+                    </div>
+                    <button class="track-speed-btn" id="speedBtn" type="button" aria-haspopup="true" aria-expanded="false">1x</button>
+                </div>
+
+                <div class="track-progress">
+                    <div class="track-time" id="timeCurrent">0:00</div>
+                    <input class="track-slider" id="progress" type="range" min="0" max="100" value="0" step="0.1" aria-label="Audio progress" />
+                    <div class="track-time" id="timeTotal">0:00</div>
+                </div>
+
+                <div class="track-controls">
+                    <button class="track-skip" id="skipBack" type="button" aria-label="Skip back 10 seconds">
+                        <i class="fa-solid fa-rotate-left"></i><span class="track-skip-text">10s</span>
+                    </button>
+                    <button class="track-play" id="playPause" type="button" aria-label="Play">
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                    <button class="track-skip" id="skipFwd" type="button" aria-label="Skip forward 10 seconds">
+                        <i class="fa-solid fa-rotate-right"></i><span class="track-skip-text">10s</span>
+                    </button>
+                </div>
+
+                <div class="track-speed-menu" id="speedMenu" role="menu" hidden>
+                    <button type="button" class="track-speed-option" data-speed="0.75" role="menuitem">0.75x</button>
+                    <button type="button" class="track-speed-option" data-speed="1" role="menuitem">1x</button>
+                    <button type="button" class="track-speed-option" data-speed="1.25" role="menuitem">1.25x</button>
+                    <button type="button" class="track-speed-option" data-speed="1.5" role="menuitem">1.5x</button>
+                    <button type="button" class="track-speed-option" data-speed="2" role="menuitem">2x</button>
+                </div>
+
+                <audio id="audio" preload="metadata"></audio>
+            </section>
+
+            <footer class="track-footer">
+                <button class="btn btn-outline-light track-nav-btn track-prev-icon" id="prevBtn" type="button" aria-label="Previous stop">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <button class="btn btn-primary track-nav-btn" id="nextBtn" type="button">Next Stop</button>
+                <a class="btn btn-primary track-nav-btn" id="feedbackBtn" href="../contact.html" hidden>Share feedback</a>
+            </footer>
+        </main>
+
+        <script>
+          const trackData = {
+            title: "Grebbelinie: Water & Fire",
+            gpxUrl: "../assets/gpx/grebbe-line-witness-track.gpx",
+            stops: [
+              {
+                id: 1,
+                title: "Fort De Gagel",
+                description:
+                  "Start your ride with a coffee at this linchpin fortress of the New Dutch Waterline turned into restaurant.",
+                amenities: { petrol: true, wc: true, coffee: true, walking: false },
+                hasAudio: true,
+                audioShort: "../assets/audio/grebbe-line-witness-track/stop_1_short.m4a",
+                audioLong: "../assets/audio/grebbe-line-witness-track/stop_1_long.m4a",
+              },
+              {
+                id: 2,
+                title: "Lambalgen",
+                description:
+                  "Learn about the Grebbeline, the bunker types and tactics used and experience the heroic defense that held.",
+                amenities: { petrol: false, wc: false, coffee: false, walking: true },
+                hasAudio: true,
+                audioShort: "../assets/audio/grebbe-line-witness-track/stop_2_short.m4a",
+                audioLong: "../assets/audio/grebbe-line-witness-track/stop_2_long.m4a",
+              },
+              {
+                id: 3,
+                title: "Grebbeberg",
+                description:
+                  "Visit the military cemetery, walk in the footsteps of heroes in the woods of the Grebbeberg battlefield.",
+                amenities: { petrol: true, wc: true, coffee: true, walking: true },
+                hasAudio: true,
+                audioShort: "../assets/audio/grebbe-line-witness-track/stop_3_short.m4a",
+                audioLong: "../assets/audio/grebbe-line-witness-track/stop_3_long.m4a",
+              },
+              {
+                id: 4,
+                title: "Werk a/h Spoel",
+                description:
+                  "Relax with a drink in this fort turned recreation area after riding the twisty Southern Lekdijk.",
+                amenities: { petrol: false, wc: true, coffee: true, walking: true },
+                hasAudio: false,
+              },
+              {
+                id: 5,
+                title: "Sliced bunker",
+                description:
+                  "A brutal cross-section of concrete and intent. Here the line is no longer theory—just scars, angles, and a story that still feels recent.",
+                amenities: { petrol: false, wc: false, coffee: false, walking: false },
+                hasAudio: false,
+              },
+            ],
+          };
+
+          const els = {
+            carousel: document.getElementById("trackCarousel"),
+            player: document.getElementById("trackPlayer"),
+            audio: document.getElementById("audio"),
+            playPause: document.getElementById("playPause"),
+            skipBack: document.getElementById("skipBack"),
+            skipFwd: document.getElementById("skipFwd"),
+            progress: document.getElementById("progress"),
+            timeCurrent: document.getElementById("timeCurrent"),
+            timeTotal: document.getElementById("timeTotal"),
+            toggleShort: document.getElementById("toggleShort"),
+            toggleLong: document.getElementById("toggleLong"),
+            speedBtn: document.getElementById("speedBtn"),
+            speedMenu: document.getElementById("speedMenu"),
+            prevBtn: document.getElementById("prevBtn"),
+            nextBtn: document.getElementById("nextBtn"),
+            feedbackBtn: document.getElementById("feedbackBtn"),
+          };
+
+          let currentIndex = 0;
+          let activeVariant = "short";
+          let carouselInner = null;
+
+          function fmtTime(sec) {
+            if (!isFinite(sec) || sec < 0) return "0:00";
+            const m = Math.floor(sec / 60);
+            const s = Math.floor(sec % 60);
+            return `${m}:${String(s).padStart(2, "0")}`;
+          }
+
+          function amenitiesIcons(amenities) {
+            const out = [];
+            if (amenities.petrol) out.push({ icon: "fa-gas-pump", label: "Petrol" });
+            if (amenities.wc) out.push({ icon: "fa-restroom", label: "WC" });
+            if (amenities.coffee) out.push({ icon: "fa-mug-hot", label: "Coffee" });
+            if (amenities.walking) out.push({ icon: "fa-person-walking", label: "Walking" });
+            return out;
+          }
+
+          function buildCarousel() {
+            els.carousel.innerHTML = "";
+            carouselInner = document.createElement("div");
+            carouselInner.className = "track-carousel-inner";
+            els.carousel.appendChild(carouselInner);
+            trackData.stops.forEach((stop, idx) => {
+              const card = document.createElement("article");
+              card.className = "track-stop-card";
+              card.tabIndex = 0;
+              card.dataset.index = String(idx);
+
+              const icons = amenitiesIcons(stop.amenities || {});
+              const amenitiesHtml = icons
+                .map(
+                  (a) =>
+                    `<span class="track-amenity" title="${a.label}" aria-label="${a.label}"><i class="fa-solid ${a.icon}"></i></span>`
+                )
+                .join("");
+
+              card.innerHTML = `
+                <div class="track-stop-head">
+                  <div class="track-stop-title">${stop.title}</div>
+                  <div class="track-stop-badge">${idx + 1}/${trackData.stops.length}</div>
+                </div>
+                <div class="track-stop-body">
+                  <p class="track-stop-desc">${stop.description}</p>
+                  ${amenitiesHtml ? `<div class="track-amenities" aria-label="Amenities">${amenitiesHtml}</div>` : ``}
+                  ${stopHasAudio(stop) ? `<div class="track-card-player-slot" data-player-slot="true" aria-label="Audio player"></div>` : ``}
+                </div>
+              `;
+
+              card.addEventListener("click", (e) => {
+                // Don't let taps on the audio controls reset the stop.
+                if (e.target.closest(".track-player")) return;
+                goTo(idx);
+              });
+              carouselInner.appendChild(card);
+            });
+          }
+
+          function updateNav() {
+            els.prevBtn.hidden = currentIndex === 0;
+            const isLast = currentIndex === trackData.stops.length - 1;
+            els.nextBtn.hidden = isLast;
+            els.feedbackBtn.hidden = !isLast;
+            // First stop: show Next full width.
+            if (currentIndex === 0) {
+              els.nextBtn.style.gridColumn = "1 / -1";
+            } else {
+              els.nextBtn.style.gridColumn = "";
+            }
+            // Last stop: keep half width (no spanning).
+            els.feedbackBtn.style.gridColumn = "";
+          }
+
+          function stopHasAudio(stop) {
+            return Boolean(stop.hasAudio && (stop.audioShort || stop.audioLong));
+          }
+
+          function setVariant(variant) {
+            activeVariant = variant;
+            els.toggleShort.classList.toggle("active", variant === "short");
+            els.toggleLong.classList.toggle("active", variant === "long");
+            els.toggleShort.setAttribute("aria-selected", variant === "short" ? "true" : "false");
+            els.toggleLong.setAttribute("aria-selected", variant === "long" ? "true" : "false");
+            loadStopAudio();
+          }
+
+          function loadStopAudio() {
+            const stop = trackData.stops[currentIndex];
+            if (!stopHasAudio(stop)) {
+              els.player.hidden = true;
+              els.audio.pause();
+              els.audio.removeAttribute("src");
+              els.audio.load();
+              return;
+            }
+            els.player.hidden = false;
+            const url = activeVariant === "long" ? stop.audioLong : stop.audioShort;
+            if (!url) return;
+            const wasPlaying = !els.audio.paused;
+            els.audio.src = url;
+            els.audio.load();
+            if (wasPlaying) els.audio.play().catch(() => {});
+          }
+
+          function updatePlayIcon() {
+            const icon = els.playPause.querySelector("i");
+            icon.className = els.audio.paused ? "fa-solid fa-play" : "fa-solid fa-pause";
+            els.playPause.setAttribute("aria-label", els.audio.paused ? "Play" : "Pause");
+          }
+
+          function updateCarouselPosition() {
+            if (!carouselInner) return;
+            carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
+          }
+
+          function goTo(idx) {
+            currentIndex = Math.max(0, Math.min(trackData.stops.length - 1, idx));
+            const card = els.carousel.querySelector(`.track-stop-card[data-index="${currentIndex}"]`);
+            updateCarouselPosition();
+            updateNav();
+            setVariant("short");
+
+            // Move player into the active card when audio exists.
+            const stop = trackData.stops[currentIndex];
+            const slot = card ? card.querySelector("[data-player-slot]") : null;
+            if (slot && stopHasAudio(stop)) {
+              slot.appendChild(els.player);
+              els.player.hidden = false;
+            } else {
+              // Keep player in DOM, but hidden when no audio.
+              els.player.hidden = true;
+            }
+          }
+
+          function toggleSpeedMenu(open) {
+            const isOpen = open ?? els.speedMenu.hidden;
+            els.speedMenu.hidden = !isOpen;
+            els.speedBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+          }
+
+          // Build UI
+          buildCarousel();
+          updateNav();
+          goTo(0);
+          updateCarouselPosition();
+
+          // Footer nav
+          els.prevBtn.addEventListener("click", () => goTo(currentIndex - 1));
+          els.nextBtn.addEventListener("click", () => goTo(currentIndex + 1));
+
+          // Toggle short/long
+          els.toggleShort.addEventListener("click", () => setVariant("short"));
+          els.toggleLong.addEventListener("click", () => setVariant("long"));
+
+          // Player controls
+          els.playPause.addEventListener("click", () => {
+            if (els.audio.src === "") return;
+            if (els.audio.paused) els.audio.play().catch(() => {});
+            else els.audio.pause();
+          });
+          els.skipBack.addEventListener("click", () => (els.audio.currentTime = Math.max(0, els.audio.currentTime - 10)));
+          els.skipFwd.addEventListener("click", () => (els.audio.currentTime = Math.min(els.audio.duration || 0, els.audio.currentTime + 10)));
+
+          els.audio.addEventListener("play", updatePlayIcon);
+          els.audio.addEventListener("pause", updatePlayIcon);
+          els.audio.addEventListener("loadedmetadata", () => {
+            els.timeTotal.textContent = fmtTime(els.audio.duration);
+            els.timeCurrent.textContent = fmtTime(0);
+            els.progress.value = "0";
+            updatePlayIcon();
+          });
+          els.audio.addEventListener("timeupdate", () => {
+            els.timeCurrent.textContent = fmtTime(els.audio.currentTime);
+            if (isFinite(els.audio.duration) && els.audio.duration > 0) {
+              els.progress.value = String((els.audio.currentTime / els.audio.duration) * 100);
+            }
+          });
+
+          els.progress.addEventListener("input", () => {
+            if (!isFinite(els.audio.duration) || els.audio.duration <= 0) return;
+            const pct = Number(els.progress.value) / 100;
+            els.audio.currentTime = pct * els.audio.duration;
+          });
+
+          // Speed
+          els.speedBtn.addEventListener("click", () => toggleSpeedMenu());
+          document.addEventListener("click", (e) => {
+            if (els.speedMenu.hidden) return;
+            if (els.speedMenu.contains(e.target) || els.speedBtn.contains(e.target)) return;
+            toggleSpeedMenu(false);
+          });
+          els.speedMenu.addEventListener("click", (e) => {
+            const btn = e.target.closest("[data-speed]");
+            if (!btn) return;
+            const sp = Number(btn.getAttribute("data-speed"));
+            if (!sp) return;
+            els.audio.playbackRate = sp;
+            els.speedBtn.textContent = `${sp}x`;
+            toggleSpeedMenu(false);
+          });
+        </script>
+    </body>
+</html>
+

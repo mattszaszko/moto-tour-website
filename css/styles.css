@@ -11520,6 +11520,17 @@ body {
 .instagram-landing .instagram-actions .btn {
   border-radius: 0;
 }
+.instagram-landing .instagram-actions .instagram-witness-tracks {
+  letter-spacing: 0.02em;
+  box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.35);
+}
+
+/* Nav: keep "The Witness Tracks" button proportional */
+#mainNav a[aria-label="The Witness Tracks (audio)"] {
+  padding: 0.45rem 0.8rem;
+  font-size: 0.95rem;
+  line-height: 1.1;
+}
 
 /* About page profile */
 .about-profile-wrapper {
@@ -11621,6 +11632,323 @@ body {
   overflow: hidden;
   min-height: 320px;
   color: #fff;
+}
+
+/* Witness Tracks directory cards */
+.track-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin: 0.75rem 0 1rem;
+  padding: 0.65rem 0.75rem;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
+}
+.track-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.78);
+  white-space: nowrap;
+}
+.track-meta-item i {
+  color: rgba(255, 255, 255, 0.7);
+}
+.track-meta-item strong {
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 600;
+}
+
+/* Track Experience (standalone web-app) */
+.track-app {
+  background-color: #000;
+  color: #fff;
+}
+.track-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 1rem;
+  background: rgba(0, 0, 0, 0.92);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+}
+.track-topbar-back {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.track-topbar-back:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+}
+.track-topbar-title {
+  font-family: "Varela Round", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.92);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.track-main {
+  height: calc(100vh - 56px);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.75rem 0.75rem 0.9rem;
+}
+
+.track-gpx .btn {
+  border-radius: 0;
+  padding: 0.9rem 1rem;
+  font-size: 0.85rem;
+}
+
+.track-carousel-wrap {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+}
+.track-carousel {
+  height: 100%;
+  display: flex;
+  overflow: hidden; /* no swipe scrolling; nav buttons only */
+  align-items: stretch;
+}
+.track-carousel-inner {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  transition: transform 280ms ease;
+}
+.track-stop-card {
+  flex: 0 0 100%;
+  max-width: 100%;
+  background: rgba(33, 37, 41, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.track-stop-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.track-stop-title {
+  font-family: "Varela Round", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.9rem;
+  line-height: 1.25;
+}
+.track-stop-badge {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+.track-stop-desc {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0 0 0.9rem;
+}
+.track-stop-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+.track-amenities {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  margin-top: 0.4rem;
+}
+.track-amenity {
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.85);
+}
+.track-amenities-empty {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* Player inside the stop card */
+.track-card-player-slot {
+  margin-top: auto;
+  padding-top: 0.8rem;
+}
+.track-stop-card .track-player {
+  position: relative;
+  margin-top: 0;
+  padding: 0.65rem;
+}
+.track-stop-card .track-progress {
+  margin-bottom: 0.6rem;
+}
+.track-stop-card .track-play {
+  width: 52px;
+  height: 52px;
+}
+
+.track-player {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 0;
+  padding: 0.75rem;
+}
+.track-player-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.65rem;
+}
+.track-toggle {
+  display: inline-flex;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+.track-toggle-btn {
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 0.45rem 0.75rem;
+  font-size: 0.8rem;
+}
+.track-toggle-btn.active {
+  background: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.95);
+}
+.track-speed-btn {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0.45rem 0.65rem;
+  font-size: 0.8rem;
+}
+.track-progress {
+  display: grid;
+  grid-template-columns: 3.25rem 1fr 3.25rem;
+  gap: 0.6rem;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+.track-time {
+  font-variant-numeric: tabular-nums;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+  text-align: center;
+}
+.track-slider {
+  width: 100%;
+}
+.track-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.track-play {
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  border: 0;
+  background: #c4b896;
+  color: #111;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+.track-skip {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0.5rem 0.7rem;
+  min-width: 66px;
+}
+.track-skip-text {
+  margin-left: 0.35rem;
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+.track-speed-menu {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(100% + 0.5rem);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+  padding: 0.6rem;
+  background: rgba(0, 0, 0, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+}
+.track-speed-option {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0.5rem 0.4rem;
+  font-size: 0.8rem;
+}
+.track-speed-option:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.track-footer {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: center;
+}
+.track-nav-btn {
+  border-radius: 0;
+  padding: 0.9rem 0.75rem;
+  font-size: 0.85rem;
+}
+
+.track-footer .track-prev-icon {
+  width: 52px;
+  padding-left: 0;
+  padding-right: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .overlay-card-image {
