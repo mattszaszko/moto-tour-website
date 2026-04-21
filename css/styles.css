@@ -122,10 +122,14 @@ body {
   max-width: 520px;
 }
 
-/* Mobile: use sticky nav so content doesn't sit underneath */
+/* Mobile: keep nav fixed, offset page content */
 @media (max-width: 991.98px) {
+  body {
+    /* Prevent content hiding behind fixed header (+ mobile CTA) */
+    padding-top: 7.25rem;
+  }
   #mainNav.fixed-top {
-    position: sticky;
+    position: fixed;
   }
 }
 
