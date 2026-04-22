@@ -131,6 +131,16 @@ body {
   #mainNav.fixed-top {
     position: fixed;
   }
+
+  /* Track “app” pages have no site nav; avoid the global offset */
+  body.track-app {
+    padding-top: 0 !important;
+  }
+
+  /* Instagram landing has no site nav; avoid the global offset */
+  body.page-instagram {
+    padding-top: 0 !important;
+  }
 }
 
 
@@ -11739,7 +11749,9 @@ body {
 }
 
 .track-main {
-  /* Use dynamic viewport height on mobile so bottom CTAs stay visible above browser UI */
+  /* Use *small* viewport height so bottom CTAs stay visible (even with address bar) */
+  height: calc(100svh - 56px);
+  /* Fallbacks */
   height: calc(100dvh - 56px);
   min-height: calc(100vh - 56px);
   display: flex;
