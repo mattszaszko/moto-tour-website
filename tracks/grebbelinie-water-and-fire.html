@@ -107,8 +107,8 @@
                   "Start your ride with a coffee at this linchpin fortress of the New Dutch Waterline turned into restaurant.",
                 amenities: { petrol: true, wc: true, coffee: true, walking: false },
                 hasAudio: true,
-                audioShort: "../assets/audio/grebbe-line-witness-track/stop_1_short.m4a",
-                audioLong: "../assets/audio/grebbe-line-witness-track/stop_1_long.m4a",
+                audioShort: "../assets/audio/grebbe-line-witness-track/grebbelinie_stop_1_short.m4a",
+                audioLong: "../assets/audio/grebbe-line-witness-track/grebbelinie_stop_1_long.m4a",
               },
               {
                 id: 2,
@@ -117,8 +117,8 @@
                   "Learn about the Grebbeline, the bunker types and tactics used and experience the heroic defense that held.",
                 amenities: { petrol: false, wc: false, coffee: false, walking: true },
                 hasAudio: true,
-                audioShort: "../assets/audio/grebbe-line-witness-track/stop_2_short.m4a",
-                audioLong: "../assets/audio/grebbe-line-witness-track/stop_2_long.m4a",
+                audioShort: "../assets/audio/grebbe-line-witness-track/grebbelinie_stop_2_short.m4a",
+                audioLong: "../assets/audio/grebbe-line-witness-track/grebbelinie_stop_2_long.m4a",
               },
               {
                 id: 3,
@@ -127,8 +127,8 @@
                   "Visit the military cemetery, walk in the footsteps of heroes in the woods of the Grebbeberg battlefield.",
                 amenities: { petrol: true, wc: true, coffee: true, walking: true },
                 hasAudio: true,
-                audioShort: "../assets/audio/grebbe-line-witness-track/stop_3_short.m4a",
-                audioLong: "../assets/audio/grebbe-line-witness-track/stop_3_long.m4a",
+                audioShort: "../assets/audio/grebbe-line-witness-track/grebbelinie_stop_3_short.m4a",
+                audioLong: "../assets/audio/grebbe-line-witness-track/grebbelinie_stop_3_long.m4a",
               },
               {
                 id: 4,
@@ -168,9 +168,19 @@
             feedbackBtn: document.getElementById("feedbackBtn"),
           };
 
-          let currentIndex = 0;
+          // Start at -1 so initial goTo(0) mounts UI/player correctly.
+          let currentIndex = -1;
           let activeVariant = "short";
           let carouselInner = null;
+          // In-memory resume points per audio file URL (lost on reload).
+          const resumePositions = new Map();
+          let pendingSeek = null;
+
+          function storeResumePosition() {
+            if (!els.audio || els.audio.src === "") return;
+            if (!isFinite(els.audio.currentTime) || els.audio.currentTime < 0) return;
+            resumePositions.set(els.audio.src, els.audio.currentTime);
+          }
 
           function fmtTime(sec) {
             if (!isFinite(sec) || sec < 0) return "0:00";
@@ -220,8 +230,10 @@
               `;
 
               card.addEventListener("click", (e) => {
-                // Don't let taps on the audio controls reset the stop.
+                // Card taps should only navigate between stops.
+                // Playback must be controlled via the play/pause button.
                 if (e.target.closest(".track-player")) return;
+                if (idx === currentIndex) return;
                 goTo(idx);
               });
               carouselInner.appendChild(card);
@@ -248,6 +260,7 @@
           }
 
           function setVariant(variant) {
+            storeResumePosition();
             activeVariant = variant;
             els.toggleShort.classList.toggle("active", variant === "short");
             els.toggleLong.classList.toggle("active", variant === "long");
@@ -260,6 +273,7 @@
             const stop = trackData.stops[currentIndex];
             if (!stopHasAudio(stop)) {
               els.player.hidden = true;
+              storeResumePosition();
               els.audio.pause();
               els.audio.removeAttribute("src");
               els.audio.load();
@@ -268,10 +282,12 @@
             els.player.hidden = false;
             const url = activeVariant === "long" ? stop.audioLong : stop.audioShort;
             if (!url) return;
-            const wasPlaying = !els.audio.paused;
+            // Always require explicit user action (play button) to start playback.
+            storeResumePosition();
+            els.audio.pause();
             els.audio.src = url;
             els.audio.load();
-            if (wasPlaying) els.audio.play().catch(() => {});
+            pendingSeek = resumePositions.get(new URL(url, window.location.href).href) ?? 0;
           }
 
           function updatePlayIcon() {
@@ -286,7 +302,10 @@
           }
 
           function goTo(idx) {
-            currentIndex = Math.max(0, Math.min(trackData.stops.length - 1, idx));
+            const nextIndex = Math.max(0, Math.min(trackData.stops.length - 1, idx));
+            if (nextIndex === currentIndex) return;
+            storeResumePosition();
+            currentIndex = nextIndex;
             const card = els.carousel.querySelector(`.track-stop-card[data-index="${currentIndex}"]`);
             updateCarouselPosition();
             updateNav();
@@ -335,10 +354,22 @@
 
           els.audio.addEventListener("play", updatePlayIcon);
           els.audio.addEventListener("pause", updatePlayIcon);
+          function updateProgressFill() {
+            els.progress.style.setProperty("--track-pct", `${els.progress.value}%`);
+          }
           els.audio.addEventListener("loadedmetadata", () => {
+            if (pendingSeek != null && isFinite(els.audio.duration) && els.audio.duration > 0) {
+              els.audio.currentTime = Math.min(Math.max(0, pendingSeek), Math.max(0, els.audio.duration - 0.01));
+              pendingSeek = null;
+            }
             els.timeTotal.textContent = fmtTime(els.audio.duration);
-            els.timeCurrent.textContent = fmtTime(0);
-            els.progress.value = "0";
+            els.timeCurrent.textContent = fmtTime(els.audio.currentTime || 0);
+            if (isFinite(els.audio.duration) && els.audio.duration > 0) {
+              els.progress.value = String(((els.audio.currentTime || 0) / els.audio.duration) * 100);
+            } else {
+              els.progress.value = "0";
+            }
+            updateProgressFill();
             updatePlayIcon();
           });
           els.audio.addEventListener("timeupdate", () => {
@@ -346,12 +377,15 @@
             if (isFinite(els.audio.duration) && els.audio.duration > 0) {
               els.progress.value = String((els.audio.currentTime / els.audio.duration) * 100);
             }
+            storeResumePosition();
+            updateProgressFill();
           });
 
           els.progress.addEventListener("input", () => {
             if (!isFinite(els.audio.duration) || els.audio.duration <= 0) return;
             const pct = Number(els.progress.value) / 100;
             els.audio.currentTime = pct * els.audio.duration;
+            updateProgressFill();
           });
 
           // Speed

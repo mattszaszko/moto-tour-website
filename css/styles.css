@@ -11917,8 +11917,8 @@ body.page-witness-tracks .subpage-hero.subpage-hero-witness-tracks p {
   margin-bottom: 0.6rem;
 }
 .track-stop-card .track-play {
-  width: 52px;
-  height: 52px;
+  width: 104px;
+  height: 104px;
 }
 
 .track-player {
@@ -11971,6 +11971,57 @@ body.page-witness-tracks .subpage-hero.subpage-hero-witness-tracks p {
 }
 .track-slider {
   width: 100%;
+  --track-played: rgba(196, 184, 150, 0.55);
+  --track-remaining: rgba(196, 184, 150, 0.22);
+  --track-pct: 0%;
+  /* Ensure custom pseudo-element styling is applied consistently */
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  height: 1.5rem;
+  padding: 0;
+  /* For browsers that honor accent-color, keep the thumb blue */
+  accent-color: #0d6efd;
+}
+.track-slider::-webkit-slider-runnable-track {
+  height: 6px;
+  background: linear-gradient(
+    to right,
+    var(--track-played) 0%,
+    var(--track-played) var(--track-pct),
+    var(--track-remaining) var(--track-pct),
+    var(--track-remaining) 100%
+  );
+  border-radius: 999px;
+}
+.track-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  /* Blue-ish position indicator (glove-friendly) */
+  background: #0d6efd;
+  border: 2px solid rgba(0, 0, 0, 0.35);
+  /* Center thumb on 6px track */
+  margin-top: -8px;
+}
+.track-slider::-moz-range-track {
+  height: 6px;
+  background: var(--track-remaining);
+  border-radius: 999px;
+}
+.track-slider::-moz-range-progress {
+  height: 6px;
+  background: var(--track-played);
+  border-radius: 999px;
+}
+.track-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: #0d6efd;
+  border: 2px solid rgba(0, 0, 0, 0.35);
 }
 .track-controls {
   display: flex;
@@ -11979,8 +12030,8 @@ body.page-witness-tracks .subpage-hero.subpage-hero-witness-tracks p {
   gap: 1rem;
 }
 .track-play {
-  width: 56px;
-  height: 56px;
+  width: 112px;
+  height: 112px;
   border-radius: 999px;
   border: 0;
   background: #c4b896;
@@ -11988,18 +12039,20 @@ body.page-witness-tracks .subpage-hero.subpage-hero-witness-tracks p {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  font-size: 2rem;
 }
 .track-skip {
   border: 1px solid rgba(255, 255, 255, 0.14);
   background: transparent;
   color: rgba(255, 255, 255, 0.9);
   padding: 0.5rem 0.7rem;
-  min-width: 66px;
+  min-width: 99px;
+  height: 72px;
+  font-size: 1.35rem;
 }
 .track-skip-text {
   margin-left: 0.35rem;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   opacity: 0.8;
 }
 .track-speed-menu {
