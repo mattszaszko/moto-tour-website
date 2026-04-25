@@ -141,6 +141,11 @@ body {
   body.page-instagram {
     padding-top: 0 !important;
   }
+
+  /* Witness Tracks page: hero already has top padding, so remove the gap */
+  body.page-witness-tracks {
+    padding-top: 0 !important;
+  }
 }
 
 
@@ -11528,6 +11533,51 @@ body {
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-size: cover;
+}
+
+/* Witness Tracks hero image */
+.subpage-hero.subpage-hero-witness-tracks {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.85) 65%, #000 100%),
+    url("../assets/img/day-trips/fort-eben-emael-ww1-meets-ww2/eben-emael-tower.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+
+/* Witness Tracks intro backdrop (hero + sections before the track list) */
+.witness-tracks-backdrop {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.88) 65%, #000 100%),
+    url("../assets/img/day-trips/fort-eben-emael-ww1-meets-ww2/eben-emael-tower.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+
+/* Avoid rendering the same hero image twice (the wrapper provides it) */
+.witness-tracks-backdrop .subpage-hero.subpage-hero-witness-tracks {
+  background: transparent;
+}
+
+/* Improve hero text contrast on top of photo */
+body.page-witness-tracks .subpage-hero.subpage-hero-witness-tracks .text-center {
+  display: inline-block;
+  max-width: 52rem;
+  padding: 1.25rem 1.25rem;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(2px);
+}
+body.page-witness-tracks .subpage-hero.subpage-hero-witness-tracks h1,
+body.page-witness-tracks .subpage-hero.subpage-hero-witness-tracks p {
+  text-shadow: 0 0.15rem 0.75rem rgba(0, 0, 0, 0.65);
+}
+
+/* On the Witness Tracks page, hide the redundant mobile CTA button */
+@media (max-width: 991.98px) {
+  body.page-witness-tracks #mainNav .witness-tracks-mobile-cta {
+    display: none !important;
+  }
 }
 
 /* Instagram landing page */
