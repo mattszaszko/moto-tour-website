@@ -11810,10 +11810,18 @@ body.page-witness-tracks .subpage-hero.subpage-hero-witness-tracks p {
   padding: 0.75rem 0.75rem calc(0.9rem + env(safe-area-inset-bottom));
 }
 
-.track-gpx .btn {
+.track-downloads {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.track-downloads .btn {
   border-radius: 0;
   padding: 0.9rem 1rem;
   font-size: 0.85rem;
+}
+.track-card-downloads-slot {
+  margin-bottom: 0.75rem;
 }
 
 .track-carousel-wrap {

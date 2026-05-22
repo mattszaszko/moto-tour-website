@@ -22,7 +22,7 @@
         <link rel="icon" type="image/x-icon" href="../assets/favicon/favicon.ico" />
         <link rel="manifest" href="../site.webmanifest" />
         <!-- Font Awesome icons (free version)-->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.3.0/css/all.css" crossorigin="anonymous" />
+        <link rel="stylesheet" href="../assets/vendor/fontawesome/css/all.min.css" />
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
@@ -38,9 +38,12 @@
         </header>
 
         <main class="track-main" id="app">
-            <div class="track-gpx">
-                <a class="btn btn-primary w-100" href="../assets/gpx/grebbe-line-witness-track.gpx" download>
+            <div class="track-downloads" id="trackDownloads" hidden aria-label="Track downloads">
+                <a class="btn btn-primary w-100" href="../assets/gpx/grebbe-line-witness-track.gpx" download="grebbe-line-witness-track.gpx">
                     <i class="fa-solid fa-download me-2"></i>Download GPX
+                </a>
+                <a class="btn btn-outline-light w-100 track-download-pdf" href="../assets/pdfs/Grebbelinie -  Accompanying materials.pdf" download="Grebbelinie - Accompanying materials.pdf">
+                    <i class="fa-solid fa-file-pdf me-2"></i>Download PDF companion
                 </a>
             </div>
 
@@ -151,6 +154,7 @@
 
           const els = {
             carousel: document.getElementById("trackCarousel"),
+            downloads: document.getElementById("trackDownloads"),
             player: document.getElementById("trackPlayer"),
             audio: document.getElementById("audio"),
             playPause: document.getElementById("playPause"),
@@ -223,6 +227,7 @@
                   <div class="track-stop-badge">${idx + 1}/${trackData.stops.length}</div>
                 </div>
                 <div class="track-stop-body">
+                  ${idx === 0 ? `<div class="track-card-downloads-slot" data-downloads-slot="true" aria-label="Track downloads"></div>` : ``}
                   <p class="track-stop-desc">${stop.description}</p>
                   ${amenitiesHtml ? `<div class="track-amenities" aria-label="Amenities">${amenitiesHtml}</div>` : ``}
                   ${stopHasAudio(stop) ? `<div class="track-card-player-slot" data-player-slot="true" aria-label="Audio player"></div>` : ``}
@@ -232,7 +237,7 @@
               card.addEventListener("click", (e) => {
                 // Card taps should only navigate between stops.
                 // Playback must be controlled via the play/pause button.
-                if (e.target.closest(".track-player")) return;
+                if (e.target.closest(".track-player") || e.target.closest(".track-downloads")) return;
                 if (idx === currentIndex) return;
                 goTo(idx);
               });
@@ -301,6 +306,17 @@
             carouselInner.style.transform = `translateX(-${currentIndex * 100}%)`;
           }
 
+          function mountDownloads() {
+            const firstCard = els.carousel.querySelector('.track-stop-card[data-index="0"]');
+            const slot = firstCard ? firstCard.querySelector("[data-downloads-slot]") : null;
+            if (currentIndex === 0 && slot) {
+              slot.appendChild(els.downloads);
+              els.downloads.hidden = false;
+            } else {
+              els.downloads.hidden = true;
+            }
+          }
+
           function goTo(idx) {
             const nextIndex = Math.max(0, Math.min(trackData.stops.length - 1, idx));
             if (nextIndex === currentIndex) return;
@@ -321,6 +337,7 @@
               // Keep player in DOM, but hidden when no audio.
               els.player.hidden = true;
             }
+            mountDownloads();
           }
 
           function toggleSpeedMenu(open) {
